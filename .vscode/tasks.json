@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake Configure (preset)",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "--preset",
+                "debug",
+            ],
+            "group": "build"
+        },
+        {
+            "label": "CMake Build (preset)",
+            "type": "process",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build",
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Run executable",
+            "type": "process",
+            "command": "${workspaceFolder}/build/code.exe", // auto-detects the output exe
+            "group": "test",
+            "dependsOn": "CMake Build (preset)"
+        }
+    ]
+}

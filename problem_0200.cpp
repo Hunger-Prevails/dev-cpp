@@ -31,24 +31,27 @@ public:
         std::queue<std::pair<size_t, size_t>> q;
 
         q.push({i, j});
+        visited[i][j] = true;
 
         while(!q.empty()) {
             auto [i, j] = q.front();
             q.pop();
 
-            visited[i][j] = true;
-
             if (i >= 1 and grid[i - 1][j] == '1' and !visited[i - 1][j]) {
                 q.push({i - 1, j});
+                visited[i - 1][j] = true;
             }
             if (j >= 1 and grid[i][j - 1] == '1' and !visited[i][j - 1]) {
                 q.push({i, j - 1});
+                visited[i][j - 1] = true;
             }
             if (i + 1 < grid.size() and grid[i + 1][j] == '1' and !visited[i + 1][j]) {
                 q.push({i + 1, j});
+                visited[i + 1][j] = true;
             }
             if (j + 1 < grid[0].size() and grid[i][j + 1] == '1' and !visited[i][j + 1]) {
                 q.push({i, j + 1});
+                visited[i][j + 1] = true;
             }
         }
     }
@@ -76,5 +79,24 @@ int main() {
     std::ifstream f("res/0049.json");
     json data = json::parse(f);
 
+    std::vector<std::vector<string>> v = data.get<std::vector<std::vector<string>>>();
+
+    std::vector<std::vector<char>> vchar;
+    vchar.reserve(v.size());
+
+    for (auto row: v) {
+        std::vector<char> new_row(row.size());
+        std::transform(row.begin(), row.end(), new_row.begin(),
+                    [](const std::string& s){ return s[0]; });
+        vchar.push_back(new_row);
+    }
+    for (auto row: vchar) {
+        for (auto c: row) {
+            std::cout << c << ' ';
+        }
+        std::cout << std::endl;
+    }
+
     Solution s;
+    std::cout << s.numIslands(vchar);
 }
