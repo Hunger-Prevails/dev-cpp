@@ -5,7 +5,7 @@
             "name": "Debug executable",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/code.exe", // update this name
+            "program": "${workspaceFolder}/build/code.exe",
             "cwd": "${workspaceFolder}",
             "MIMode": "gdb",
             "miDebuggerPath": "C:/msys64/ucrt64/bin/gdb.exe",
