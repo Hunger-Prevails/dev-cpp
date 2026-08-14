@@ -10,7 +10,5 @@ add_executable(code code.cpp)
 
 target_link_libraries(code PRIVATE nlohmann_json::nlohmann_json)
 
-add_executable(threads threads.cpp)
-
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/res)
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
